@@ -1,7 +1,9 @@
 from django.db import models
 from django.db.models.fields import related
+from django.db.models.fields.files import ImageField
 from django_quill.fields import QuillField
 from django_quill.quill import Quill
+
 
 KYRGYZ = 'KYRGYZ'
 RUSSIAN = 'RUSSIAN'
@@ -30,15 +32,19 @@ class Book(models.Model):
     name = models.CharField(max_length=100, null=True, verbose_name="Название книги")
     author = models.CharField(max_length=100, null=True, verbose_name="Автор")
     pdf_file = models.FileField(upload_to="media/")
+    cover = models.ImageField(upload_to="images/")
     language = models.CharField(
         max_length=20,
         choices=LANGUAGE_CHOICES,
         default=RUSSIAN,
     )
+
     year = models.IntegerField()
     discription = models.TextField (max_length=1000, verbose_name="Описание книги")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="book")
-    image = models.ImageField(verbose_name="Картинка обложки", upload_to="images/")
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         verbose_name = "Книга"
@@ -46,6 +52,21 @@ class Book(models.Model):
     
     def __str__(self):
         return self.name
+
+
+class News(models.Model):
+    name = models.CharField(max_length=200, null=True, verbose_name="Заголовок новости")
+    img = models.ImageField(upload_to='img/')
+    body = QuillField(verbose_name = "Тело новости")
+  
+
+    class Meta:
+        verbose_name = "Новость"
+        verbose_name_plural = "Новости"
+    
+    def __str__(self):
+        return self.name
+
 
 class URL(models.Model):    
     name = models.CharField(max_length=200, null=True, verbose_name="Название")
@@ -60,13 +81,18 @@ class URL(models.Model):
         return self.name
    
 
-class News(models.Model):
-    name = models.CharField(max_length=200, null=True, verbose_name="Заголовок новости")
+class Authors(models.Model):
+    name = models.CharField(max_length=200, null=True, verbose_name="Имя автора")
     body = QuillField(verbose_name = "Тело новости")
+    create_at = models.DateTimeField(auto_now_add=True)
+    short_description = models.TextField(max_length=200)
+    description = models.TextField()
+
 
     class Meta:
-        verbose_name = "Новость"
-        verbose_name_plural = "Новости"
+        verbose_name = "Автор"
+        verbose_name_plural = "Биография автора"
     
     def __str__(self):
         return self.name
+

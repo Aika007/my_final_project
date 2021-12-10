@@ -19,7 +19,7 @@ $(function() {
     });
 
 
-    // Scroll to top animated button
+    // // Scroll to top animated button
 
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
@@ -146,65 +146,6 @@ $(function() {
 
 
     });
-
-
-    /*  Isotope Filter */
-
-    (function() {
-        var winDow = $(window);
-        var $container = $('.portfolio-items');
-        var $filter = $('.filter');
-
-        try {
-            $container.imagesLoaded(function() {
-                $container.show();
-                $container.isotope({
-                    filter: '*',
-                    layoutMode: 'masonry',
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear'
-                    }
-                });
-            });
-        } catch (err) {}
-
-        winDow.bind('resize', function() {
-            var selector = $filter.find('a.active').attr('data-filter');
-
-            try {
-                $container.isotope({
-                    filter: selector,
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear',
-                        queue: false,
-                    }
-                });
-            } catch (err) {}
-            return false;
-        });
-
-        $filter.find('a').click(function() {
-            var selector = $(this).attr('data-filter');
-
-            try {
-                $container.isotope({
-                    filter: selector,
-                    animationOptions: {
-                        duration: 750,
-                        easing: 'linear',
-                        queue: false,
-                    }
-                });
-            } catch (err) {
-
-            }
-            return false;
-        });
-
-
-    }());
 
 
     /* Header shrink function*/

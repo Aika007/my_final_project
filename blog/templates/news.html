@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<head>
+
+<style>
+    * {
+      box-sizing: border-box;
+    }    
+    /* Float four columns side by side */
+    .column {
+      float: left;
+      width: 25%;
+      padding: 0 10px;
+    }
+    
+    /* Remove extra left and right margins, due to padding */
+    .row {
+      margin: 0 -5px; 
+      padding-top: 15px;
+      box-shadow: none !important;
+    }
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    /* Responsive columns */
+    @media screen and (max-width: 600px) {
+      .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+    }
+    
+    /* Style the counter cards */
+    .card {
+      padding: 16px;
+      text-align: center;
+      background-color: #f1f1f1;
+    }
+    </style>
+    </head>
+    <section>
+      <form style="margin-left: 1100px;" method=POST action="{% url 'blog:news_list' %}">
+        {% csrf_token %}
+        <input type="search" placeholder="Поиск" name="searched">
+        <button>search</button>
+      </form>
+    </section>
+   
+    <div class="row">
+        {% for i in news %}
+          <div class="col-lg-3">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <img style="width: 150px;" src="{{i.img.url}}" />
+                <a href="{% url 'blog:news_detail' pk=i.id %}"> <h5 class="card-title">{{i.name}}</h5></a>
+                
+                <h6 class="card-subtitle mb-2 text-muted">{{i.subtitle}}</h6>
+                <p class="card-text">{{i.text}}</p>
+                <a href="{% url 'blog:news_detail' pk=i.id %}">{{"Подробнее..."}}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+{% endblock %}
