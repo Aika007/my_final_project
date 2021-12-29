@@ -5,16 +5,14 @@
 
     
     <!-- Book Section -->
-    <section id="portfolio">
         <form style="margin-left: 1100px;" method=POST action="{% url 'blog:books_list' %}">
             {% csrf_token %}
             <input type="search" placeholder="Поиск" name="searched">
             <button>search</button>
         </form>
-        <div class="container-fluid wrapper">
-            <div class="row">
+        <div class="container-fluid">
                 <div class="col-md-12">
-                    <h2 class="section-heading">Книги</h2>
+                    <h2 style="font-size: 70px; margin-top: 80px;" class="section-heading">Книги</h2>
                     <h3 class="section-subheading text-muted">Книга – это мечта, которую вы держите в руках. ...</h3>
                 </div>
                 <div class="col-xs-12 col-md-12 portfolio-submenu text-center">
@@ -24,32 +22,22 @@
                             <li><a href="{% url 'blog:category_detail' pk=category.id %}">{{category.name}}</a></li>
                         {% endfor %}
                     </ul>
-                    <!--/#portfolio-filter-->
                 </div>
-            </div>
-        </div>
-        <div class="portfolio-wrapper portfolio-container-fluid">
-            <div class="portfolio-items">
-                
-               
-            {% for book in books %}
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 work-grid wordpress graphic">
-                    <div class="portfolio-item">
-                        <div class="hover-bg">
-                            <a href="{% url 'blog:books_detail' pk=book.id %}" class="portfolio-link" data-toggle="modal">
-                                <div class="hover-text">
-                                    <h4>{{book.name}}</h4>
-                                    <h5>{{book.category}}</h5>
-                                    <div class="clearfix"></div>
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <a href="{% url 'blog:books_detail' pk=book.id %}"></a><img src="{{book.cover.url}}" class="img-responsive" alt="portfolio-image"></a>
-                            </a>
-                        </div>
+
+                {% for book in books %}
+                    <div style="width: 400px; margin: 10px;" class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="hover-bg">
+                                <a href="{% url 'blog:books_detail' pk=book.id %}" class="portfolio-link" data-toggle="modal">
+                                    <div class="hover-text">
+                                        <h4>{{book.name}}</h4>
+                                        <h5>{{book.category}}</h5>
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                    <a href="{% url 'blog:books_detail' pk=book.id %}"></a><img style="width:100pxş" src="{{book.cover.url}}" class="img-responsive" alt="portfolio-image"></a>
+                                </a>
+                            </div>
                     </div>
-                </div>
-            {% endfor %}
-            </div>
+                {% endfor %}
+           
         </div>
-    </section>
 {% endblock %}

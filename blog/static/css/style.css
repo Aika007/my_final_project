@@ -220,6 +220,12 @@ fieldset[disabled] .btn-xl.active {
 .section-heading,
 .section-subheading {
     opacity: 0;
+
+    margin-top: 40px;
+    text-align: center;
+    font-family: serif;
+    color: #000000;
+
 }
 
 @media (max-width:480px) {
@@ -1002,7 +1008,7 @@ section#team {
 
 section#portfolio {
     background-color: #000000;
-    padding-bottom: 110px;
+    /* padding-bottom: 450px; */
 }
 
 .img-responsive {
@@ -1205,6 +1211,7 @@ section#portfolio {
     padding-left: 0px;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 110px;
 }
 
 ul.filter {
@@ -1465,12 +1472,12 @@ body {
     padding: 50px 0px;
 }
 
-.container-fluid-clients {
+/* .container-fluid-clients {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-}
+} */
 
 
 /* 11.0 =========================================================================  TESTIMONIALS  ==*/

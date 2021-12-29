@@ -2,6 +2,7 @@ from django.shortcuts import render
 from blog.models import News, Book, Category, URL, Authors
 from bs4 import BeautifulSoup as BSHTML
 
+from django.http import FileResponse
 
 def index(request):
     news = News.objects.all()
@@ -43,6 +44,14 @@ def category_detail(request,pk):
 def books_detail(request, pk):
     book = Book.objects.get(pk=pk)
     return render(request, 'books_detail.html', context = {'book':book})
+
+    
+
+def open_pdf(request,pk):
+    book = Book.objects.get(id=pk)
+    n = book.pdf_file
+    if request.method == 'GET':
+        return FileResponse(open(f'media/{n}', 'rb'), content_type='application/pdf')
 
 # def categories(request):
 #     categories = Categories.objects.all()

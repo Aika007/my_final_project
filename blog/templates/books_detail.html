@@ -10,16 +10,17 @@
 
 
     <!-- Project Details Go Here -->
-    <h2 style="padding-top:100px ;">{{book.name}}</h2>
-    <p class="item-intro text-muted">{{book.discription}}</p>
-    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-    <p>
-        <strong>Want this UI kit sample?</strong>You can download it for free, courtesy of <a href="#">edubd.net</a>, or you can download it <a href="#">here</a>.</p>
-    <ul class="list-inline">
-        <li>Date: August 9, 2013</li>
-        <li>Client: Web Designer Depot</li>
-        <li>Category: Graphic Design</li>
-    </ul>
-    
-
+    <div style="width: 1200px; padding: 20px; margin-left: 70px; margin-top: 20px;">
+        <h2 style="padding-top:100px ;">{{book.name}}</h2>
+        <p class="item-intro text-muted">{{book.author}}</p> 
+        <a href="{% url 'blog:pdf' pk=book.id %}">Открыть PDF -></a>
+        <p class="item-intro text-muted">{{book.pdf_file}}</p> 
+        <p class="item-intro text-muted">{{book.discription}}</p> 
+        {% for i in book.url.all %}
+            <h4><a href="{{i.url_for}}" target="_blank">{{i.name}}</a></h4>
+        {% endfor %}
+          
+        
+    </div>
+   
 {% endblock %}    
