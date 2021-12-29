@@ -51,7 +51,7 @@ def open_pdf(request,pk):
     book = Book.objects.get(id=pk)
     n = book.pdf_file
     if request.method == 'GET':
-        return FileResponse(open(f'media/{n}', 'rb'), content_type='application/pdf')
+        return FileResponse(open(f'{n}', 'rb'), content_type='application/pdf')
 
 
 def authors_list(request):
