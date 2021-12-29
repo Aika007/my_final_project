@@ -14,6 +14,7 @@
         <h2 style="padding-top:100px ;">{{book.name}}</h2>
         <p class="item-intro text-muted">{{book.author}}</p> 
         <a href="{% url 'blog:pdf' pk=book.id %}">Открыть PDF -></a>
+        <p class="item-intro text-muted">{{book.pdf_file}}</p> 
         <p class="item-intro text-muted">{{book.discription}}</p> 
         {% for i in book.url.all %}
             <h4><a href="{{i.url_for}}" target="_blank">{{i.name}}</a></h4>
