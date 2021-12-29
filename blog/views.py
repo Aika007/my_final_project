@@ -53,11 +53,6 @@ def open_pdf(request,pk):
     if request.method == 'GET':
         return FileResponse(open(f'media/{n}', 'rb'), content_type='application/pdf')
 
-# def categories(request):
-#     categories = Categories.objects.all()
-#     # return render(request, 'books_detail.html', context={
-#     #     "Мировая литература", "Кыргыз адабияты", "Türk edebiyatı", "Русская литература", "Поэзия"
-#     #     })
 
 def authors_list(request):
     author = Authors.objects.all()
